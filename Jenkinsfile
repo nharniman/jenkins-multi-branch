@@ -44,8 +44,7 @@ def runTests(duration) {
         /*
         runWithServer {url ->
             mvn "-o -f sometests test -Durl=${url} -Dduration=${duration}"
-        */
-        }
+        } */
     }
 }
 
