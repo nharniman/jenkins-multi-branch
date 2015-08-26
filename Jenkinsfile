@@ -59,13 +59,13 @@ def undeploy(id) {
 }
 
 def runWithServer(body) {
-    //def jettyUrl = 'http://localhost:8081/' // TODO why is this not inherited from the top-level scope?
-    //def id = UUID.randomUUID().toString()
+    def jettyUrl = 'http://localhost:8081/' // TODO why is this not inherited from the top-level scope?
+    def id = UUID.randomUUID().toString()
     deploy id
-    /*
+    
     try {
         body.call "${jettyUrl}${id}/"
     } finally {
         undeploy id
-    } */
+    }
 }
