@@ -41,7 +41,7 @@ def mvn(args) {
 def runTests(duration) {
     node {
         checkout scm
-        sh 'sleep ${duration}'
+        sh "sleep ${duration}"
         /*
         runWithServer {url ->
             mvn "-o -f sometests test -Durl=${url} -Dduration=${duration}"
