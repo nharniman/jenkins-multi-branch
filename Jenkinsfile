@@ -3,7 +3,7 @@ def jettyUrl = 'http://localhost:8081/'
 stage 'Dev'
 node {
     checkout scm
-    mvn '-o clean package'
+    mvn 'clean package'
     archive 'target/x.war'
 }
 
@@ -44,13 +44,14 @@ def runTests(duration) {
         sh "sleep ${duration}"
         /*
         runWithServer {url ->
-            mvn "-o -f sometests test -Durl=${url} -Dduration=${duration}"
+            mvn "-f sometests test -Durl=${url} -Dduration=${duration}"
         } */
     }
 }
 
 def deploy(id) {
     unarchive mapping: ['target/x.war' : 'x.war']
+    sh "mkdir -p /tmp/webapps"
     sh "cp x.war /tmp/webapps/${id}.war"
 }
 
