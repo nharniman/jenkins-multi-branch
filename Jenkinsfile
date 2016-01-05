@@ -1,1 +1,3 @@
-load 'developer.groovy'
+node {
+    flow = load 'developer.groovy'
+}
