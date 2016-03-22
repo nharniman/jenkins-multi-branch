@@ -7,6 +7,8 @@ node {
     archive 'target/x.war'
 }
 
+checkpoint "Pre-QA"
+
 stage 'QA'
 parallel(longerTests: {
     runTests(30)
@@ -14,11 +16,12 @@ parallel(longerTests: {
     runTests(20)
 })
 
+checkpoint "Pre-Stage"
+
 stage name: 'Staging', concurrency: 1
 node {
     deploy 'staging'
 }
-
 input message: "Does staging look good?"
 try {
     checkpoint('Before production')
