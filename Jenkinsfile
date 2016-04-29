@@ -7,7 +7,12 @@ node {
     archive 'target/x.war'
 }
 
-checkpoint "Pre-QA"
+try {
+    checkpoint('Pre-QA')
+} catch (NoSuchMethodError _) {
+    echo 'Checkpoint feature available in Jenkins Enterprise by CloudBees.'
+}
+
 
 stage 'QA'
 parallel(longerTests: {
@@ -16,7 +21,11 @@ parallel(longerTests: {
     runTests(20)
 })
 
-checkpoint "Pre-Stage"
+try {
+    checkpoint('Pre-Stage')
+} catch (NoSuchMethodError _) {
+    echo 'Checkpoint feature available in Jenkins Enterprise by CloudBees.'
+}
 
 stage name: 'Staging', concurrency: 1
 node {
